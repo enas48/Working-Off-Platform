@@ -1,10 +1,14 @@
-const mongoose= require('mongoose');
-
-const url='mongodb://mongo:27017/docker-node-mongo';
+import mongoose from 'mongoose'
+const url='mongodb://127.0.0.1:27017/docker-node-mongo';
 
 const connectDb=()=>{
-    mongoose.connect(url, ()=>{
-        console.log('connected to mongoDB')
-    })
+    try {
+        mongoose.set("strictQuery", false);
+        mongoose.connect(url);
+        console.log("Connected to Mongo Successfully!");
+      } catch (error) {
+        console.log(error);
+      }
+
 }
-module.exports=connectDb;
+export default connectDb
